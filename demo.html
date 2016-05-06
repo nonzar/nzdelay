@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NZDelay</title>
+</head>
+<body>
+<script src="nz.delay.js"></script>
+<script>
+    //demo1 simple
+    NZDelay.w(1000).f(function () {
+        console.log(this);
+    }).w(1000).f(function () {
+        console.log(this);
+    });
+</script>
+</body>
+</html>
