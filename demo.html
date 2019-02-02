@@ -6,24 +6,38 @@
 </head>
 <body>
 <script type="module">
-  import { NZDelay } from './nz.delay.mjs'
+  import { NZDelay, Delay } from './nz.delay.mjs'
 
-  let delay1 = new NZDelay()
-  delay1.do(1000).do((resolve) => {
-    console.log(1)
-    resolve()
-  }).do(1000).do((resolve) => {
-    console.log(2)
-    resolve()
-  })
-  let delay2 = new NZDelay()
-  delay2.do(1000).do((resolve) => {
-    console.log(3)
-    resolve()
-  }).do(1000).do((resolve) => {
-    console.log(4)
-    resolve()
-  })
+  let test1 = () => {
+    let delay1 = new NZDelay()
+    delay1.do(1000).do((resolve) => {
+      console.log(1)
+      resolve()
+    }).do(1000).do((resolve) => {
+      console.log(2)
+      resolve()
+    })
+    let delay2 = new NZDelay()
+    delay2.do(1000).do((resolve) => {
+      console.log(3)
+      resolve()
+    }).do(1000).do((resolve) => {
+      console.log(4)
+      resolve()
+    })
+  }
+  let test2 = () => {
+    Delay.do(1000).do(resolve => {
+      console.log(0)
+      resolve()
+    }).do(1000).do(resolve => {
+      console.log(3)
+    })
+    Delay.do(2000).do(() => {
+      console.log(1)
+    })
+  }
+  test2()
 </script>
 </body>
 </html>

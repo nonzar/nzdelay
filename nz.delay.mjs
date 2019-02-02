@@ -5,7 +5,6 @@
  */
 const debug = true
 
-
 class NZDelay {
   constructor () {
     this.list = []
@@ -52,4 +51,9 @@ class NZDelay {
   }
 }
 
-export { NZDelay }
+let Delay = {
+  do (value) {
+    return (new NZDelay()).do(value)
+  },
+}
+export { NZDelay, Delay }
