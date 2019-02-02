@@ -51,9 +51,11 @@ class NZDelay {
   }
 }
 
-let Delay = {
-  do (value) {
-    return (new NZDelay()).do(value)
-  },
+export default {
+  NZDelay,
+  Delay: {
+    do (value) {
+      return (new NZDelay()).do(value)
+    },
+  }
 }
-export { NZDelay, Delay }
