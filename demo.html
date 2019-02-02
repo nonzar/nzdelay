@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>NZDelay</title>
+  <meta charset="UTF-8">
+  <title>NZDelay</title>
 </head>
 <body>
-<script src="nz.delay.js"></script>
-<script>
-    //demo1 simple
-    NZDelay.w(1000).f(function () {
-        console.log(this);
-    }).w(1000).f(function () {
-        console.log(this);
-    });
+<script type="module">
+  import { NZDelay } from './nz.delay.mjs'
+
+  let delay1 = new NZDelay()
+  delay1.do(1000).do((resolve) => {
+    console.log(1)
+    resolve()
+  }).do(1000).do((resolve) => {
+    console.log(2)
+    resolve()
+  })
+  let delay2 = new NZDelay()
+  delay2.do(1000).do((resolve) => {
+    console.log(3)
+    resolve()
+  }).do(1000).do((resolve) => {
+    console.log(4)
+    resolve()
+  })
 </script>
 </body>
 </html>
