@@ -3,7 +3,7 @@
  * 示例:
  * (new NZDelay).do(1000).do(resolve=>resolve())
  */
-const debug = true
+const debug = false
 
 class NZDelay {
   constructor () {
@@ -59,3 +59,5 @@ export default {
     },
   }
 }
+
+// 8000
