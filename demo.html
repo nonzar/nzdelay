@@ -6,8 +6,14 @@
 </head>
 <body>
 <script type="module">
-  import { NZDelay, Delay } from './nz.delay.mjs'
+  import nzdelay from './nz.delay.mjs'
 
+  const {setTimeOut, NZDelay, Delay} = nzdelay
+  let test0 = () => {
+    setTimeOut(() => {
+      console.log(10000)
+    }, 1000)
+  }
   let test1 = () => {
     let delay1 = new NZDelay()
     delay1.do(1000).do((resolve) => {
@@ -37,6 +43,8 @@
       console.log(1)
     })
   }
+  test0()
+  test1()
   test2()
 </script>
 </body>

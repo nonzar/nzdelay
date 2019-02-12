@@ -3,7 +3,16 @@
  * 示例:
  * (new NZDelay).do(1000).do(resolve=>resolve())
  */
-const debug = false
+const setTimeOut = (fn, time) => {
+  let endTime = +new Date() + time,
+    loopFn = () => {
+      if (+new Date() >= endTime) {
+        return fn()
+      }
+      window.requestAnimationFrame(loopFn)
+    }
+  window.requestAnimationFrame(loopFn)
+}
 
 class NZDelay {
   constructor () {
@@ -12,7 +21,6 @@ class NZDelay {
 
   _next () {
     if (this.list.length) {
-      debug && console.log('debug: next')
       this.list[0]()
     }
   }
@@ -20,16 +28,10 @@ class NZDelay {
   do (value) {
     if (typeof (value) === 'number') {
       this.list.push(() => {
-        let endTime = +new Date() + value, loopFn = () => {
-          if (+new Date() >= endTime) {
-            debug && console.log('debug: time out')
-            this.list.shift()
-            this._next()
-            return
-          }
-          window.requestAnimationFrame(loopFn)
-        }
-        window.requestAnimationFrame(loopFn)
+        setTimeOut(() => {
+          this.list.shift()
+          this._next()
+        }, value)
       })
     } else {
       this.list.push(() => {
@@ -39,7 +41,6 @@ class NZDelay {
           this.list.shift()
           this._next()
         }).catch((err) => {
-          debug && console.log('debug: delay reject')
           throw err
         })
       })
@@ -52,6 +53,7 @@ class NZDelay {
 }
 
 export default {
+  setTimeOut,
   NZDelay,
   Delay: {
     do (value) {
@@ -59,5 +61,3 @@ export default {
     },
   }
 }
-
-// 8000
